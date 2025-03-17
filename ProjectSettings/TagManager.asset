@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FPSCam
   - TPSCam
+  - ground
   layers:
   - Default
   - TransparentFX
