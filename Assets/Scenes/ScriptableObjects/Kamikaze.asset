@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7dffcbeae3338a47853c702eb92a1e8, type: 3}
+  m_Name: Kamikaze
+  m_EditorClassIdentifier: 
+  enemyName: Kamikaze
+  enemyPrefab: {fileID: 8742687233512526202, guid: 6313b4ba4388c4a41b467547e50b7722, type: 3}
+  spawnRarity: 1
+  maxHealth: 100
+  moveSpeed: 5
+  attackRange: 2
+  baseDamage: 10
+  showAttackRange: 1
