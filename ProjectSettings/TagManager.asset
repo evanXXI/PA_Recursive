@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - TopdownCam
   - FPSCam
   - TPSCam
+  - Kamikaze
+  - Normie
+  - Archer
+  - Firespitter
+  - Tank
   layers:
   - Default
   - TransparentFX
