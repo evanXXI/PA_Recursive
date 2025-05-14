@@ -31,11 +31,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Heal(float amount)
-    {
-        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
-    }
-
     public float GetCurrentHealth()
     {
         return currentHealth;
@@ -50,12 +45,6 @@ public class Health : MonoBehaviour
     {
         maxHealth = Mathf.Max(0f, maxHealth);
         currentHealth = Mathf.Max(0f, currentHealth);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 

@@ -7,12 +7,31 @@ public class InputManager : MonoBehaviour
     private PlayerInput.OnFootActions onFoot;
     
     private PlayerMotor motor;
+    private TopDownAttackAdapter attackAdapter;
+    
     void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+        
         motor = GetComponent<PlayerMotor>();
-        onFoot.Jump.performed += ctx => motor.Jump();
+        attackAdapter = GetComponent<TopDownAttackAdapter>();
+        
+        // Callbacks pour les actions d'attaque
+        if (attackAdapter != null)
+        {
+            onFoot.Shoot.performed += ctx => attackAdapter.Shoot();
+            onFoot.SwitchAmmo.performed += ctx => attackAdapter.SwitchAmmo();
+        }
+    }
+
+    void Update()
+    {
+        // Transmettre la position de visée à l'adaptateur d'attaque
+        if (attackAdapter != null)
+        {
+            attackAdapter.UpdateAimPosition(onFoot.Look.ReadValue<Vector2>());
+        }
     }
 
     void FixedUpdate()

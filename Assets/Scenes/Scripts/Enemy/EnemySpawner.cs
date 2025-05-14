@@ -130,12 +130,23 @@ public class EnemySpawner : MonoBehaviour
             // Instantie l'ennemi
             GameObject enemy = Instantiate(availableEnemies[enemyIndex].enemyPrefab, spawnPosition, Quaternion.identity);
             
-            // Applique le multiplicateur de santé
-            Health enemyHealth = enemy.GetComponent<Health>();
-            if (enemyHealth != null)
+            // Applique le multiplicateur de santé - vérifie les deux systèmes de santé
+            float baseHealth = availableEnemies[enemyIndex].maxHealth;
+            
+            // Essaie d'abord avec EnhancedHealth
+            EnhancedHealth enhancedHealth = enemy.GetComponent<EnhancedHealth>();
+            if (enhancedHealth != null)
             {
-                float baseHealth = availableEnemies[enemyIndex].maxHealth;
-                enemyHealth.SetMaxHealth(baseHealth * currentHealthMultiplier);
+                enhancedHealth.SetMaxHealth(baseHealth * currentHealthMultiplier);
+            }
+            else
+            {
+                // Sinon essaie avec Health standard
+                Health enemyHealth = enemy.GetComponent<Health>();
+                if (enemyHealth != null)
+                {
+                    enemyHealth.SetMaxHealth(baseHealth * currentHealthMultiplier);
+                }
             }
         }
     }

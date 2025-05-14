@@ -5,48 +5,39 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
-    private bool isGrounded;
     
     public float speed = 5f;
     public float gravity = -9.8f;
-    public float jumpHeight = 1f;
+    
+    private Camera mainCamera;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {   
-        isGrounded = controller.isGrounded;
+        mainCamera = Camera.main;
     }
     
     //Receive movement from the InputManager.cs and apply them to our character controller
     public void ProcessMove(Vector2 input)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
-
-        if (isGrounded && playerVelocity.y < 0)
+        // Créer un vecteur de direction basé sur les entrées
+        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
+        
+        if (mainCamera != null)
         {
-            playerVelocity.y = -2f;
+            // Convertir le mouvement pour qu'il soit relatif à la caméra
+            // Ignorer la rotation sur X et Z, garder seulement Y (rotation horizontale)
+            Quaternion camRotation = Quaternion.Euler(0, mainCamera.transform.eulerAngles.y, 0);
+            moveDirection = camRotation * moveDirection;
         }
         
-        // Apply gravity
+        // Appliquer le mouvement
+        controller.Move(moveDirection * speed * Time.deltaTime);
+        
+        // Appliquer la gravité
         playerVelocity.y += gravity * Time.deltaTime;
+        playerVelocity.y = Mathf.Max(playerVelocity.y, -9.8f); // Limiter la vitesse de chute
         controller.Move(playerVelocity * Time.deltaTime);
-        //Debug.Log(playerVelocity);
-    }
-
-    public void Jump()
-    {
-        if (isGrounded)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravity);
-        }
     }
 }

@@ -7,9 +7,6 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Settings")]
     [SerializeField] private EnemyData enemyData;
     
-    [Header("UI Settings")]
-    [SerializeField] private GameObject healthBarPrefab;
-    
     [Header("Attack Settings")]
     [SerializeField] private float attackCooldown = 1f;
     [SerializeField] private float cooldownRandomness = 0.3f;  // Variation +/- du cooldown
@@ -24,24 +21,20 @@ public class EnemyController : MonoBehaviour
     {
         // Récupère les composants et références
         health = GetComponent<Health>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+        // Chercher le joueur
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+            player = playerObj.transform;
+        else
+            Debug.LogWarning($"Player not found for enemy {gameObject.name}");
+            
         enemyTag = gameObject.tag;
 
         // Applique les stats depuis EnemyData
         if (enemyData != null)
         {
             health.SetMaxHealth(enemyData.maxHealth);
-        }
-
-        // Initialise la barre de vie
-        if (healthBarPrefab != null)
-        {
-            GameObject healthBarInstance = Instantiate(healthBarPrefab, transform);
-            HealthBarUI healthBar = healthBarInstance.GetComponentInChildren<HealthBarUI>();
-            if (healthBar != null)
-            {
-                healthBar.Initialize(health);
-            }
         }
     }
 
@@ -67,7 +60,7 @@ public class EnemyController : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         // Les Archers et Firespitters restent à distance
-        if (enemyTag == "ArcherTag" || enemyTag == "FirespitterTag")
+        if (enemyTag == "Archer" || enemyTag == "Firespitter")
         {
             if (distanceToPlayer < enemyData.attackRange * 0.8f)
             {
@@ -82,7 +75,7 @@ public class EnemyController : MonoBehaviour
             Vector3 direction = (player.position - transform.position).normalized;
             
             // Les Tanks sont plus lents mais ont plus de vie
-            float speedMultiplier = enemyTag == "TankTag" ? 0.5f : 1f;
+            float speedMultiplier = enemyTag == "Tank" ? 0.5f : 1f;
             
             // Déplace l'ennemi
             transform.position += direction * enemyData.moveSpeed * speedMultiplier * Time.deltaTime;
@@ -96,37 +89,63 @@ public class EnemyController : MonoBehaviour
     {
         if (!canAttack) return;
 
-        Health playerHealth = player.GetComponent<Health>();
-        if (playerHealth == null) return;
+        // Try to get EnhancedHealth first
+        bool hasHealthComponent = false;
+        EnhancedHealth enhancedPlayerHealth = null;
+        Health playerHealth = null;
+        
+        if (player.TryGetComponent(out enhancedPlayerHealth))
+        {
+            hasHealthComponent = true;
+        }
+        else if (player.TryGetComponent(out playerHealth))
+        {
+            hasHealthComponent = true;
+        }
+        
+        if (!hasHealthComponent) return;
 
         float damage = enemyData.baseDamage;
         
         switch (enemyTag)
         {
-            case "KamikazeTag":
+            case "Kamikaze":
                 // Le Kamikaze fait des dégâts explosifs et meurt
                 damage *= 2f;
-                playerHealth.TakeDamage(damage);
+                if (enhancedPlayerHealth != null)
+                    enhancedPlayerHealth.TakeDamage(damage);
+                else
+                    playerHealth.TakeDamage(damage);
+                    
                 health.TakeDamage(health.GetMaxHealth()); // Suicide
                 break;
 
-            case "TankTag":
+            case "Tank":
                 // Le Tank fait moins de dégâts mais a plus de vie
                 damage *= 0.7f;
-                playerHealth.TakeDamage(damage);
+                if (enhancedPlayerHealth != null)
+                    enhancedPlayerHealth.TakeDamage(damage);
+                else
+                    playerHealth.TakeDamage(damage);
                 break;
 
-            case "ArcherTag":
-            case "FirespitterTag":
+            case "Archer":
+            case "Firespitter":
                 // Les attaquants à distance font des dégâts moyens
                 damage *= 0.8f;
-                playerHealth.TakeDamage(damage);
+                if (enhancedPlayerHealth != null)
+                    enhancedPlayerHealth.TakeDamage(damage);
+                else
+                    playerHealth.TakeDamage(damage);
                 break;
 
-            case "NormieTag":
+            case "Normie":
             default:
                 // Dégâts normaux
-                playerHealth.TakeDamage(damage);
+                if (enhancedPlayerHealth != null)
+                    enhancedPlayerHealth.TakeDamage(damage);
+                else
+                    playerHealth.TakeDamage(damage);
                 break;
         }
     }
@@ -139,14 +158,14 @@ public class EnemyController : MonoBehaviour
         float adjustedCooldown = attackCooldown;
         switch (enemyTag)
         {
-            case "KamikazeTag":
+            case "Kamikaze":
                 adjustedCooldown *= 0.5f; // Plus rapide
                 break;
-            case "TankTag":
+            case "Tank":
                 adjustedCooldown *= 1.5f; // Plus lent
                 break;
-            case "ArcherTag":
-            case "FirespitterTag":
+            case "Archer":
+            case "Firespitter":
                 adjustedCooldown *= 1.2f; // Légèrement plus lent
                 break;
         }

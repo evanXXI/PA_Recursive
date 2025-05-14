@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - TopdownCam
-  - FPSCam
-  - TPSCam
   - ground
   - Kamikaze
   - Normie
