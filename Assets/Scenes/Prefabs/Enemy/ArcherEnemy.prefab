@@ -72,7 +72,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Archer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8642478154321961050, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

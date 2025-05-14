@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2233829460069907377, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233829460069907377, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: b5fe6cae2cd9a2d4eaadb37a0bce32e5, type: 2}
+    - target: {fileID: 2233829460069907377, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2343518290594008791, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
       propertyPath: m_Name
       value: TankEnemy
@@ -72,7 +84,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Tank
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8642478154321961050, guid: 750f35f5f039ec448b6e0edc3d4f2019, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

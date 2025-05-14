@@ -58,7 +58,9 @@ public class TopDownAttackAdapter : MonoBehaviour
         {
             lookInput = Input.mousePosition;
         }
-        
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            SwitchAmmo();
+
         UpdateAimDirection();
     }
     

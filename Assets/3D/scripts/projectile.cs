@@ -9,9 +9,14 @@ public abstract class projectile : MonoBehaviour
     {
         if (other.gameObject != owner)
         {
-            impact(other);
+            if (other.gameObject.GetComponent<Health>())
+            {
+                impact(other);
+                other.gameObject.GetComponent<Health>().TakeDamage(100);
+                Debug.Log("Hello: " + other.gameObject.name);
+            }
         }
-        
+
     }
 
     public abstract void impact (Collision other);

@@ -158,7 +158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   gravity: -9.8
-  jumpHeight: 3
 --- !u!114 &2581230649659639920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,8 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 0}
-  ammo1Prefab: {fileID: 4460458594104883694, guid: 934076215d05c0f4fa4329046b386c33, type: 3}
-  ammo2Prefab: {fileID: 4460458594104883694, guid: c9ff27c0d5138db4290c5a28015b92c3, type: 3}
+  ammo1Prefab: {fileID: 4460458594104883694, guid: c9ff27c0d5138db4290c5a28015b92c3, type: 3}
+  ammo2Prefab: {fileID: 4460458594104883694, guid: 934076215d05c0f4fa4329046b386c33, type: 3}
   ammo3Prefab: {fileID: 4460458594104883694, guid: b8eeeac37f9539d4481409dc367cabb2, type: 3}
   throwForce: 10
   throwUpwardForce: 0
@@ -181,6 +180,6 @@ MonoBehaviour:
   explosiveDamage: 15
   bouncyDamage: 7
   useMouseAiming: 1
-  joystickAimSensitivity: 10
   aimDistance: 10
-  debugMode: 1
+  useDirectMouseInput: 1
+  showDebug: 1
