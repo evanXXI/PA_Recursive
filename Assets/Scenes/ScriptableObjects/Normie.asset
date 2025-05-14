@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyName: Normie
   enemyPrefab: {fileID: 1139738637512206681, guid: cd58dc36e7afdca43bd25aa679e9ca29, type: 3}
   spawnRarity: 1
-  maxHealth: 100
+  maxHealth: 60
   moveSpeed: 5
-  attackRange: 2
+  attackRange: 1.5
   baseDamage: 10
   showAttackRange: 1

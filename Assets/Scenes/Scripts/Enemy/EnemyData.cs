@@ -9,7 +9,7 @@ public class EnemyData : ScriptableObject
     
     [Header("Spawn Settings")]
     [Range(1, 5)]
-    [Tooltip("1 = très rare, 5 = très fréquent")]
+    [Tooltip("1 = très rare, 5 = très fréquent ; Kamikaze: 1, Normie: 5, Archer/Firespitter: 3, Tank: 2, Boss: unique - spawns after x amount of waves")]
     public int spawnRarity = 1;
     
     [Header("Stats")]
@@ -22,7 +22,7 @@ public class EnemyData : ScriptableObject
     [Tooltip("Kamikaze/Tank: 1.0f (contact), Normie/Boss(proche): 1.5f, Archer/Firespitter/Boss(distance): 5.0f")]
     public float attackRange = 2f;
 
-    [Tooltip("Base damage for the enemy")]
+    [Tooltip("Kamikaze: 20, Normie: 10, Archer: 12, Firespitter: 15, Tank: 17")]
     public float baseDamage = 10f;
 
     [Header("Debug")]

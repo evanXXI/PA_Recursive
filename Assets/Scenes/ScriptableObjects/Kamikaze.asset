@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyName: Kamikaze
   enemyPrefab: {fileID: 8742687233512526202, guid: 6313b4ba4388c4a41b467547e50b7722, type: 3}
   spawnRarity: 1
-  maxHealth: 100
-  moveSpeed: 5
-  attackRange: 2
-  baseDamage: 10
+  maxHealth: 20
+  moveSpeed: 8
+  attackRange: 1
+  baseDamage: 20
   showAttackRange: 1

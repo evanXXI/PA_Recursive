@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyName: Tank
   enemyPrefab: {fileID: 3061815076198343129, guid: fff263eb629963e43a00caee48df7772, type: 3}
   spawnRarity: 1
-  maxHealth: 100
-  moveSpeed: 5
-  attackRange: 2
-  baseDamage: 10
+  maxHealth: 200
+  moveSpeed: 3
+  attackRange: 1
+  baseDamage: 17
   showAttackRange: 1

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Firespitter
   enemyPrefab: {fileID: 4169831242052519150, guid: 19bdfe2a511b3ee4a80405691717bfbb, type: 3}
-  spawnRarity: 1
-  maxHealth: 100
+  spawnRarity: 3
+  maxHealth: 40
   moveSpeed: 5
-  attackRange: 2
-  baseDamage: 10
+  attackRange: 5
+  baseDamage: 15
   showAttackRange: 1

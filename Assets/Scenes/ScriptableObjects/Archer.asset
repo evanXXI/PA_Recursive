@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Archer
   enemyPrefab: {fileID: 3453704470510670804, guid: 9ffe22f5ad1f8b547bfbb0989026c2f0, type: 3}
-  spawnRarity: 1
-  maxHealth: 100
+  spawnRarity: 3
+  maxHealth: 40
   moveSpeed: 5
-  attackRange: 2
-  baseDamage: 10
+  attackRange: 5
+  baseDamage: 12
   showAttackRange: 1
